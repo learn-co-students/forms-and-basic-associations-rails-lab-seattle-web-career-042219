@@ -1,6 +1,3 @@
-
-
-
 class Song < ActiveRecord::Base
   # add associations here
   belongs_to :artist
@@ -27,14 +24,14 @@ class Song < ActiveRecord::Base
 
   def note_contents=(notes)
     notes.each do |note|
-      if note.length > 0
-        self.notes.build(content: note)
-      end
+      self.notes.build(content: note)
     end
   end
 
   def note_contents
     self.notes.map {|note| note.content}
   end
+
+
 
 end
