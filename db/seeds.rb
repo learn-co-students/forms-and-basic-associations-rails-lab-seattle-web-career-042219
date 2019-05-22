@@ -8,6 +8,17 @@
 
 # ID3 tag music genres are surprisingly specific.
 
+
+beyonce = Artist.create(name: 'beyonce')
+mariah = Artist.create(name: 'mariah')
+
+upgrade = Song.create(title: 'upgrade')
+touch_my_body = Song.create(title: 'touch my body')
+
+e = Note.create(content: 'e')
+f = Note.create(content: 'f')
+
+
 genres = Hash[[
   "Blues",
   "Classic Rock",
@@ -158,5 +169,3 @@ genres = Hash[[
   "JPop",
   "Synthpop"
 ].map { |genre| [genre, Genre.find_or_create_by(name: genre)] }]
-
-
