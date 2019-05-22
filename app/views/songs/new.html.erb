@@ -4,8 +4,21 @@
   <%= f.label :title %>
   <%= f.text_field :title %>
   <br />
+  <%= f.fields_for :artist do |ff| %>
+    <%= ff.label :name %>
+    <%= ff.text_field :name, id: 'song_artist_name' %>
+  <% end %>
+  <br>
+  <%= f.label :genre_id %>
+  <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+  <br>
+  <!-- this is calling @song.notes -->
+  <!-- @song has 3 notes because we called @song.notes.build 3x in SongsController#new -->
+  <%= f.label :notes %>
+  <%= f.fields_for :notes do |ff| %>
+    <!-- if it weren't for capybara tests requiring particular IDs, this could just be ff.text_field :content -->
+    <%= ff.text_field :content, id: "song_notes_#{ff.index}" %>
+  <% end %>
 
   <%= f.submit %>
 <% end %>
-
-
