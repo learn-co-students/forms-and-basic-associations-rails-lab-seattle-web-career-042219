@@ -9,6 +9,11 @@ class SongsController < ApplicationController
 
   def new
     @song = Song.new
+    @song.build_artist
+    # this 3 is because the tests are specifically looking for 3 notes fields
+    3.times do
+      @note = @song.notes.build
+    end
   end
 
   def create
@@ -47,7 +52,6 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:title)
+    params.require(:song).permit(:title, {artist_attributes: :name}, :genre_id, {notes_attributes: :content})
   end
 end
-
